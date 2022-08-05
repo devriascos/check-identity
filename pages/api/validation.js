@@ -1,3 +1,5 @@
+import FormData from 'form-data'
+
 export default function handler(req, res) {
 
   if (req.method=='POST') {         

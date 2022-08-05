@@ -5,7 +5,7 @@ export default function handler(req, res) {
   if (req.method=='POST') {     
   
     //Se preparan los datos requeridos para la creación del enrollment
-    const formData = new FormData()    
+    const formData = new FormData()
     formData.append('type', req.body.type)
     formData.append('user_authorized', req.body.user_authorized);
      

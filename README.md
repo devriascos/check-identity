@@ -4,20 +4,12 @@ Antes de configurar el ambiente, cambia el nombre del fichero ".env.example" por
 
 Ahora para correr el proyecto basta con clonar el repositorio y ejecutar:
 
-`npm install`
-
-o si usas yarn:
-
 `yarn install`
 
 Luego de instaladas las dependencias, ejecutar:
 
-`npm run dev`
-
-o si usas yarn:
-
 `yarn run dev`
 
-###### Proyecto realizado como prueba técnica para Ing. de Integraciones ^^
+#### Proyecto realizado como prueba técnica para Ing. de Integraciones ^^
 
 Nota: para efectos prácticos el desarrollo fue parametrizado para validar documentos en Colombia.

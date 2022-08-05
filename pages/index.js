@@ -49,7 +49,7 @@ export default function Home() {
     if (frontImage.value && reverseImage.value) {
 
       const submitButton = document.querySelector('#submitButton')
-      //submitButton.disabled = true
+      submitButton.disabled = true
   
       //Cambia el texto por defecto del botón "Enviar"
       setIsSending(true)
@@ -77,10 +77,10 @@ export default function Home() {
       await uploadImageToServer('front', frontImage, validationDetails.front_image_endpoint)     
       await uploadImageToServer('reverse', reverseImage, validationDetails.reverse_image_endpoint)                  
 
-      console.log('ValId: '+validationDetails.validation_id);
+
       setTimeout(()=>{
-        //router.push(`/results?validationId=${validationDetails.validation_id}`)
-      }, 3000)
+        router.push(`/results?validationId=${validationDetails.validation_id}`)
+      }, 4000)
     }
     else{
       swal('Por favor, selecciona las imágenes del documento')
@@ -122,22 +122,21 @@ export default function Home() {
     //Parseamos la url del endpoint para que no de conflictos
     const uploadImageEndPoint = encodeURIComponent(endPoint)      
     const reader = new FileReader()
-    reader.onloadend = async () => {                
+    reader.onloadend = async () => {        
         await fetch(`api/uploadImage?endPoint=${uploadImageEndPoint}`,{                
           method: 'PUT',
-          body: reader.result,//Manda los datos codificados de la imágen
+          body: reader.result,
           headers: {
-            'Content-Type': imageData.files[0].type,
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': imageData.files[0].type
           }
         })
         .then( ( response ) => response.json())
         .then( ( response ) => {
-          console.log(response)
           imageSide == 'front' ? setFrontImageUploaded(true) : setReverseImageUploaded(true)    
           return response.http_code === 200 ? true : false 
         })
-        .catch( (error) => console.log(error) ) 
+        .catch( (error) => console.log(error) )
 
       }
     reader.readAsDataURL(imageData.files[0]) 
@@ -168,10 +167,10 @@ export default function Home() {
             <svg xmlns="http://www.w3.org/2000/svg" className={styles.iconMd} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg> 
-            <p>{ frontImage.value ? `Seleccionaste ${frontImage.value}` : '' }</p>
+            <p>{ frontImage.value ? `Seleccionaste ${frontImage.files[0].name}` : '' }</p>
             <input 
               type="file" 
-              accept=".png, .jpg" 
+              accept=".png, .jpg, .jpeg" 
               name="front_image" 
               id="front_image"
               className={styles.hidden}            
@@ -184,16 +183,16 @@ export default function Home() {
             <svg xmlns="http://www.w3.org/2000/svg" className={styles.iconMd} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>            
-            <p>{ reverseImage.value ? `Seleccionaste ${reverseImage.value}` : '' }</p>
+            <p>{ reverseImage.value ? `Seleccionaste ${reverseImage.files[0].name}` : '' }</p>
             <input 
               type="file" 
-              accept=".png, .jpg" 
+              accept=".png, .jpg, .jpeg" 
               name="reverse_image" 
               id="reverse_image"
               className={styles.hidden}            
               onChange={handleReverseImage}/>
           </div>       
-        </form>
+        </form> 
 
         <button 
           className={styles.button} 
