@@ -14,10 +14,7 @@ export default function Home() {
   //Inicializa los estados correspondientes a las imagenes del documento de identidad
   const [frontImage, setFrontImage] = useState('')
   const [reverseImage, setReverseImage] = useState('')
-  const [frontImageUploaded, setFrontImageUploaded] = useState(false)
-  const [reverseImageUploaded, setReverseImageUploaded] = useState(false)
 
-  const [encodedImage, setEncodedImage] = useState('')
   const [isSending, setIsSending] = useState(false);
 
   //Se manejan los cambios (cargas de imagen en el input)
@@ -107,6 +104,7 @@ export default function Home() {
     })
     .then( response => response.json() )
     .then( (response) => { 
+      console.log(response)
       return {
         validation_id: response.validation_id,
         front_image_endpoint: response.instructions.front_url,
@@ -132,8 +130,7 @@ export default function Home() {
           }
         })
         .then( ( response ) => response.json())
-        .then( ( response ) => {
-          imageSide == 'front' ? setFrontImageUploaded(true) : setReverseImageUploaded(true)    
+        .then( ( response ) => {             
           return response.http_code === 200 ? true : false 
         })
         .catch( (error) => console.log(error) )

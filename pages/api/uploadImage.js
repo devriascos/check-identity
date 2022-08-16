@@ -1,7 +1,7 @@
 export const config = {
   api: {
       bodyParser: {
-          sizeLimit: '4mb' //Límite en peso de la imágen a 10MB
+          sizeLimit: '10mb' //Límite en peso de la imágen a 10MB
       }
   }
 }
@@ -12,7 +12,7 @@ export default function handler(req, res) {
       method: req.method,
       body: req.body,
       headers: {
-        'Truora-API-Key': process.env.NEXT_PUBLIC_API_KEY,        
+        'Truora-API-Key': process.env.NEXT_PUBLIC_API_KEY,
         'Content-Type': 'image/*',
       }
     })
