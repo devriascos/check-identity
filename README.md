@@ -1,4 +1,4 @@
-Bienvenido a Identify una app básica para verificación de documentos de identidad.
+## App para prueba técnica de Truora
 
 Antes de configurar el ambiente, cambia el nombre del fichero ".env.example" por ".env", actualiza las credenciales para conectar a los endpoint del API correctamente.
 
