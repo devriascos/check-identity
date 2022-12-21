@@ -10,6 +10,5 @@ Luego de instaladas las dependencias, ejecutar:
 
 `yarn run dev`
 
-#### Proyecto realizado como prueba técnica para Ing. de Integraciones ^^
 
-Nota: para efectos prácticos el desarrollo fue parametrizado para validar documentos en Colombia.
+#### Nota: para efectos prácticos el desarrollo fue parametrizado para validar documentos en Colombia.
